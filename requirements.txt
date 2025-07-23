@@ -1,0 +1,7 @@
+pandas
+numpy
+pyyaml
+pytest
+ydata-profiling
+logging
+pandera
