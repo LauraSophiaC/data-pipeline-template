@@ -1,24 +1,52 @@
-# Data Pipeline Project
+# MercadoPago – DE Challenge
 
-Este proyecto implementa un pipeline de datos con:
+Este proyecto implementa un pipeline de datos en Python para preparar un dataset final listo para entrenamiento de modelos de Machine Learning. Utiliza una arquitectura de medallas (Bronze → Silver → Gold) y procesa tres fuentes de datos: prints.json, taps.json y pays.csv.
 
-- Carga e ingestión desde archivos CSV
-- Limpieza y preprocesamiento
-- Validación de calidad de datos
-- Logs de ejecución
-- Exploración de datos automática
-- Pruebas unitarias
+---
 
-## Instrucciones
+## Cómo ejecutar
 
-1. Instala dependencias:
+1. Clonar el repositorio:
 
-pip install -r requirements.txt
+   git clone https://github.com/tu_usuario/data-pipeline-mercadopago.git  
+   cd data-pipeline-mercadopago
 
-2. Corre el pipeline:
+2. Instalar dependencias:
 
-python pipeline/main.py
+   pip install -r requirements.txt
 
-3. Corre las pruebas:
+3. Ejecutar el pipeline completo:
 
-pytest tests/
+   python -m pipeline.main
+
+---
+
+## Capas del pipeline
+
+
+─ ingestion.py       -> Carga archivos raw y genera bronze
+─ preprocessing.py   ->Limpia, desanida, convierte fechas
+─ transformation.py  -> Cálculos de agregados + output final
+─ main.py            -> Orquesta el flujo completo
+
+
+- data/raw/      ->  Archivos originales (.json, .csv)
+- data/bronze/   ->  Datos crudos serializados en .parquet
+- data/silver/   -> Datos limpios, desanidados y estandarizados
+- data/gold/    ->  Dataset final: prints recientes + métricas históricas
+
+---
+
+## Output
+
+Archivo generado:  data/gold/training_dataset.parquet
+
+Contiene columnas como:
+
+- clicked: 1/0 según si hubo tap
+- past_prints: cantidad de veces que se mostró la value prop en 3 semanas previas
+- past_taps: cantidad de taps en 3 semanas previas
+- past_pays_count: número de pagos realizados
+- past_pays_total: monto total pagado
+
+---

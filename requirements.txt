@@ -5,3 +5,4 @@ pytest
 ydata-profiling
 logging
 pandera
+pyarrow
