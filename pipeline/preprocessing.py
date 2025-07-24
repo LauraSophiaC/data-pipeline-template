@@ -2,7 +2,7 @@ import pandas as pd
 import os
 from datetime import datetime
 from utils.logger import get_logger
-logger = get_logger(__name__)
+logger = get_logger("preprocessing")
 
 
 def clean_columns_names(df):
@@ -63,11 +63,11 @@ def preprocess_pays():
 def save_to_silver(df: pd.DataFrame, name: str):
     os.makedirs("data/medallion/silver", exist_ok=True)
     df.to_parquet(f"data/medallion/silver/{name}_clean.parquet", index=False)
-    print(f"{name}_clean.parquet guardado en data/medallion/silver/")
+    logger.info(f"{name}_clean.parquet guardado en data/medallion/silver/")
 
 
 def run_preprocessing():
-    print(" ----- INICIANDO PREPROCESAMIENTO HACIA CAPA SILVER ----- ")
+    logger.info(" ----- INICIANDO PREPROCESAMIENTO HACIA CAPA SILVER ----- ")
     
     prints_df = preprocess_prints()
     taps_df = preprocess_taps()
@@ -77,4 +77,4 @@ def run_preprocessing():
     save_to_silver(taps_df, "taps")
     save_to_silver(pays_df, "pays")
 
-    print(" ----- PREPROCESAMIENTO FINALIZADO ----- ")    
+    logger.info(" ----- PREPROCESAMIENTO FINALIZADO ----- ")    

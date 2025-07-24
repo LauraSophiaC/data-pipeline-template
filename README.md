@@ -4,7 +4,7 @@ Este proyecto implementa un pipeline de datos en Python para preparar un dataset
 
 ---
 
-## ▶Cómo ejecutar
+## Cómo ejecutar
 
 1. Clonar el repositorio:
 
@@ -23,10 +23,17 @@ Este proyecto implementa un pipeline de datos en Python para preparar un dataset
 
 ## Capas del pipeline
 
-- data/raw/ → Archivos originales (.json, .csv)
-- data/bronze/ → Datos crudos serializados en .parquet
-- data/silver/ → Datos limpios, desanidados y estandarizados
-- data/gold/ → Dataset final: prints recientes + métricas históricas
+
+─ ingestion.py       -> Carga archivos raw y genera bronze
+─ preprocessing.py   ->Limpia, desanida, convierte fechas
+─ transformation.py  -> Cálculos de agregados + output final
+─ main.py            -> Orquesta el flujo completo
+
+
+- data/raw/      ->  Archivos originales (.json, .csv)
+- data/bronze/   ->  Datos crudos serializados en .parquet
+- data/silver/   -> Datos limpios, desanidados y estandarizados
+- data/gold/    ->  Dataset final: prints recientes + métricas históricas
 
 ---
 

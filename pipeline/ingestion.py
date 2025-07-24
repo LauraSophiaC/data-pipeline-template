@@ -2,7 +2,8 @@ import pandas as pd
 from datetime import datetime
 import os
 from utils.logger import get_logger
-logger = get_logger(__name__)
+
+logger = get_logger("ingestion")
 
 
 
@@ -22,10 +23,10 @@ def load_pays (path="data/raw/pays.csv"):
 def save_to_bronze (df: pd.DataFrame, name:str):
     os.makedirs("data/medallion/bronze", exist_ok=True)
     df.to_parquet(f"data/medallion/bronze/{name}.parquet", index=False)
-    print(f"{name}.parquet guardato en data/medallion/bronze")
+    logger.info(f"{name}.parquet guardato en data/medallion/bronze")
 
 def run_ingestion():
-    print(" ----- INICIANDO INGESTA HACIA CAPA BRONZE ----- ")
+    logger.info(" ----- INICIANDO INGESTA HACIA CAPA BRONZE ----- ")
     prints_df = load_prints()
     taps_df = load_taps()
     pays_df = load_pays()
@@ -34,4 +35,4 @@ def run_ingestion():
     save_to_bronze(taps_df, "taps")
     save_to_bronze(pays_df, "pays")
 
-    print(" ----- INGESTA FINALIZADA ----- ")
+    logger.info(" ----- INGESTA FINALIZADA ----- ")

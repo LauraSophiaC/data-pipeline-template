@@ -1,7 +1,8 @@
 import pandas as pd
 from datetime import datetime, timedelta
 from utils.logger import get_logger
-logger = get_logger(__name__)
+
+logger = get_logger("transformation")
 
 
 def run_transformation():
@@ -10,7 +11,7 @@ def run_transformation():
     taps_df = pd.read_parquet("data/medallion/silver/taps_clean.parquet")
     pays_df = pd.read_parquet("data/medallion/silver/pays_clean.parquet")
 
-    print('----- INICIANDO TRANSFORMACION HACIA CAPA GOLD ----- ')
+    logger.info('----- INICIANDO TRANSFORMACION HACIA CAPA GOLD ----- ')
 
     #Definir ventanas temporales
     max_date = prints_df['timestamp'].max()
@@ -58,8 +59,8 @@ def run_transformation():
 
     # 4. GUARDAR EN GOLG
 
-    date = datetime.now().strftime('%Y-%m-%d')
-    df.to_parquet("data/medallion/gold/dataset_training_{date}.parquet", index=False)
-    print("Dataset guardado en data/medallion/gold/dataset_training.parquet")
-    print(" ----- TRANSFORMACION FINALIZADA ----- ")
+    fecha = datetime.now().strftime("%Y%m%d")
+    df.to_parquet(f"data/medallion/gold/dataset_training_{fecha}.parquet", index=False)
+    logger.info("Dataset guardado en data/medallion/gold/dataset_training.parquet")
+    logger.info(" ----- TRANSFORMACION FINALIZADA ----- ")
     
