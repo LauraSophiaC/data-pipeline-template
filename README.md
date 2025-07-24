@@ -8,7 +8,7 @@ Este proyecto implementa un pipeline de datos en Python para preparar un dataset
 
 1. Clonar el repositorio:
 
-   git clone https://github.com/tu_usuario/data-pipeline-mercadopago.git  
+   git clone (https://github.com/LauraSophiaC/data-pipeline-template.git)
    cd data-pipeline-mercadopago
 
 2. Instalar dependencias:
