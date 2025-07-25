@@ -24,10 +24,10 @@ Este proyecto implementa un pipeline de datos en Python para preparar un dataset
 ## Capas del pipeline
 
 
-─ ingestion.py       -> Carga archivos raw y genera bronze
-─ preprocessing.py   ->Limpia, desanida, convierte fechas
-─ transformation.py  -> Cálculos de agregados + output final
-─ main.py            -> Orquesta el flujo completo
+- ingestion.py       -> Carga archivos raw y genera bronze
+- preprocessing.py   ->Limpia, desanida, convierte fechas
+- transformation.py  -> Cálculos de agregados + output final
+- main.py            -> Orquesta el flujo completo
 
 
 - data/raw/      ->  Archivos originales (.json, .csv)
