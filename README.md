@@ -39,7 +39,7 @@ Este proyecto implementa un pipeline de datos en Python para preparar un dataset
 
 ## Output
 
-Archivo generado:  data/gold/training_dataset.parquet
+Archivo generado:  data/gold/dataset_training_20250723.parquet
 
 Contiene columnas como:
 
